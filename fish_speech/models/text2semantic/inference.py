@@ -339,7 +339,7 @@ def generate_long(
     temperature: float = 0.8,
     compile: bool = False,
     iterative_prompt: bool = True,
-    chunk_length: int = 150,
+    chunk_length: int = 512,
     prompt_text: Optional[str | list[str]] = None,
     prompt_tokens: Optional[torch.Tensor | list[torch.Tensor]] = None,
 ):
@@ -385,7 +385,7 @@ def generate_long(
 
     encoded = []
     for text in texts:
-        content_sequence = ContentSequence(modality=None)
+        content_sequence = ContentSequence(modality="text")
         content_sequence.append(TextPart(text=text))
         encoded.append(
             content_sequence.encode_for_inference(
